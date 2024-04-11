@@ -1,0 +1,38 @@
+#version: '3.8'
+#services:
+#  mysql-service:
+#    image: mysql
+#    environment:
+#      MYSQL_DATABASE: 'inventory-service'
+#      MYSQL_ROOT_PASSWORD: '123456'
+#    volumes:
+#      - mysql-data:/var/lib/mysql
+#    ports:
+#      - "3306:3306"
+#    restart: always
+#
+#  service1:
+#    build: ./inventory-service
+#    environment:
+#      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://host.docker.internal:8761/eureka
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-service:3306/inventory-service
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: 123456
+#    depends_on:
+#      - mysql-service
+#    ports:
+#      - "7072:55255"
+#
+#  service2:
+#    build: ./order-service
+#    environment:
+#      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://host.docker.internal:8761/eureka
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-service:3306/order-service
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: 123456
+#    depends_on:
+#      - mysql-service
+#    ports:
+#      - "7071:8081"
+#volumes:
+#  mysql-data:
